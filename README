@@ -1,0 +1,9 @@
+The Item is Abstract class. I could have had the containers hold Immovable objets, but that would have been confusing and not self-documenting.
+
+Composite design pattern has been used for Items. Autonomous inherits from Moveable, which inherits from Immovable. Immovable extends Item. This is a tree.
+
+World extends Stew<Item>, which is a descrete (rows * cols) perfect HashSet with extra functionality: instead of being a HashMap<Item,Object PRESENT>, this very small change which is a, HashMap<Item,Item>, the same Item. This allows for querying a specific hash index and seeing if it is occupied. This is an example of a singleton design pattern enforced by a hash. This reduces to an array, but instead of storing the x,y position in the object and (potentially many places) in the array, it looks up the x,y position of the object and sticks it only there.
+
+Note, that the World does not have a sigleton design pattern. You could store multiple worlds and that would be fine and probably handy if the application evolves, for instance, calculating muliple world lines. However, the Items in the World can only be used with that World, and this is enforced, because hash values are only valid for a certian fixed size.
+
+The interface is an example of the model view controller. Specifically, the model is the world, and the view is Swing, but also a text ui for debugging.
